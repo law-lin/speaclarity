@@ -17,6 +17,47 @@
   padding: 30px 0;
 }
 
+.pulse {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
+}
+
+.outline {
+  width: 60px;
+  height: 60px;
+  border: 8px solid #b5a4a4;
+  animation: pulse 3s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+  position: absolute;
+
+  border-radius: 50%;
+}
+
+#delayed {
+  animation-delay: 1.5s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+    border: 65px solid #0b3082;
+  }
+  50% {
+    border: solid #a3ffc2;
+    opacity: 0.8;
+  }
+
+  90% {
+    transform: scale(1.5);
+    opacity: 0.2;
+    border: 3px solid #2e3cff;
+  }
+}
+
 .button {
   border-radius: 9999px;
   border: none;
@@ -27,6 +68,14 @@
   background-color: #6f96bd;
 }
 
+.button:focus {
+  outline: none;
+}
+
+.button:hover {
+  background-color: #458f8c;
+}
+
 .button.stop {
   background-color: #ff0000;
 }
@@ -35,12 +84,12 @@
   background-color: #e95656;
 }
 
-.button:focus {
-  outline: none;
+.button.reset {
+  background-color: #abc422;
 }
 
-.button:hover {
-  background-color: #458f8c;
+.button.reset:hover {
+  background-color: #7b8638;
 }
 
 .visualizer {
@@ -55,9 +104,14 @@
   background-color: yellow;
 }
 
-.transcript {
-  background-color: #8e97c3;
+#scroll {
+  overflow-y: auto;
   height: 100%;
+  background-color: #8e97c3;
+  max-height: 400px;
+}
+
+#transcript {
   border-radius: 5px;
   color: #ffffff;
   font-size: 22px;

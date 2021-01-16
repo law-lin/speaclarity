@@ -36,21 +36,32 @@ const Controls = () => {
     setRecordedBlob(recordedBlob);
   };
 
+  const handleReset = () => {
+    resetTranscript();
+    setRecordedBlob(null);
+  };
+
   return (
     <>
-      <Space direction="vertical" style={{ width: "100%" }}>
+      <Space direction="vertical" style={{ width: "100%" }} size={20}>
         <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <button
-            className="button"
-            onClick={handleStartListening}
-            style={{ borderColor: listening ? "red" : "none" }}
-          >
-            <FaMicrophone size="25" />
-          </button>
+          {listening ? (
+            <div className="pulse">
+              <div className="outline" />
+              <div className="outline" id="delayed" />
+              <button onClick={handleStartListening} className="button">
+                <FaMicrophone size="25" />
+              </button>
+            </div>
+          ) : (
+            <button onClick={handleStartListening} className="button">
+              <FaMicrophone size="25" />
+            </button>
+          )}
           <button className="button stop" onClick={handleStopListening}>
             <FaStopCircle size="25" />
           </button>
-          <button className="button" onClick={resetTranscript}>
+          <button className="button reset" onClick={handleReset}>
             <BiReset size="25" />
           </button>
         </div>
@@ -76,13 +87,19 @@ const Controls = () => {
           />
         </Space>
         <Row gutter={16}>
-          <Col span={11}>
+          <Col span={11} style={{ maxHeight: "435px" }}>
+            <h2 style={{ color: "#ffffff", fontSize: "24px", fontWeight: 700 }}>
+              Live Transcript
+            </h2>
             <Transcript transcript={transcript} />
           </Col>
           <Col span={2} style={{ display: "flex", justifyContent: "center" }}>
             <div className="divider" />
           </Col>
           <Col span={11}>
+            <h2 style={{ color: "#ffffff", fontSize: "24px", fontWeight: 700 }}>
+              Filler Word Frequencies Pie Chart
+            </h2>
             <PieChart transcript={transcript} />
           </Col>
         </Row>

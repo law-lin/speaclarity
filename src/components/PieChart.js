@@ -23,9 +23,7 @@ const PieChart = ({ transcript }) => {
   }
 
   const options = {
-    title: {
-      text: "Filler Word Frequencies"
-    },
+    theme: "dark2",
     data: [
       {
         type: "pie",
