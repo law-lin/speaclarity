@@ -1,5 +1,6 @@
 import React from "react";
 import { Table } from "antd";
+import fillerWords from "constants/fillerWords";
 
 const columns = [
   {
@@ -30,7 +31,18 @@ const WordCounts = ({ transcript }) => {
     }
   }
 
-  return <Table columns={columns} dataSource={data} />;
+  return (
+    <Table
+      columns={columns}
+      dataSource={data}
+      pagination={false}
+      className="table"
+      rowClassName={(word, index) =>
+        fillerWords.includes(word.word) ? "isFiller" : ""
+      }
+      scroll={{ y: 445 }}
+    />
+  );
 };
 
 export default WordCounts;

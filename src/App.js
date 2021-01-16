@@ -7,11 +7,11 @@ import "./styles.css";
 
 export default function App() {
   return (
-    <div>
+    <div className="app">
       <div className="head">
-        <h1>Speeclarity</h1>
+        <h1 style={{ color: "white" }}>Speeclarity</h1>
       </div>
-      <div>
+      <div className="main">
         <Controls />
       </div>
     </div>

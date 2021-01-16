@@ -4,11 +4,13 @@ import fillerWords from "constants/fillerWords";
 
 const Transcript = ({ transcript }) => {
   return (
-    <Highlighter
-      searchWords={fillerWords}
-      textToHighlight={transcript}
-      highlightStyle={{ backgroundColor: "yellow" }}
-    />
+    <div className="transcript">
+      <Highlighter
+        searchWords={fillerWords}
+        textToHighlight={transcript}
+        highlightStyle={{ backgroundColor: "yellow" }}
+      />
+    </div>
   );
 };
 
