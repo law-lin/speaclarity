@@ -5,7 +5,7 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import { ReactMic } from "react-mic";
 // Icons
-import { Row, Col, Space } from "antd";
+import { Row, Col, Space, Result } from "antd";
 import { FaMicrophone, FaStopCircle } from "react-icons/fa";
 import { BiReset } from "react-icons/bi";
 // Components
@@ -15,7 +15,8 @@ import WordCounts from "components/WordCounts";
 
 const Controls = () => {
   const [listening, setListening] = useState(false);
-  const [recordedBlob, setRecordedBlob] = useState();
+  const [recordedBlob, setRecordedBlob] = useState(null);
+  const [visible, setVisible] = useState(false);
   const { transcript, resetTranscript } = useSpeechRecognition();
 
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
@@ -106,6 +107,11 @@ const Controls = () => {
         <div>
           <WordCounts transcript={transcript} />
         </div>
+        <Result
+          transcript={transcript}
+          visible={visible}
+          onCancel={() => setVisible(false)}
+        />
       </Space>
     </>
   );
