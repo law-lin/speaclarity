@@ -9,7 +9,7 @@ export default function App() {
   return (
     <div className="app">
       <div className="head">
-        <h1 style={{ color: "white" }}>Speeclarity</h1>
+        <h1 style={{ color: "white" }}>Speaclarity</h1>
       </div>
       <div className="main">
         <Controls />

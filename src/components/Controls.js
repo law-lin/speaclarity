@@ -5,13 +5,14 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import { ReactMic } from "react-mic";
 // Icons
-import { Row, Col, Space, Result } from "antd";
+import { Row, Col, Space } from "antd";
 import { FaMicrophone, FaStopCircle } from "react-icons/fa";
 import { BiReset } from "react-icons/bi";
 // Components
 import Transcript from "components/Transcript";
 import PieChart from "components/PieChart";
 import WordCounts from "components/WordCounts";
+import Result from "components/Result";
 
 const Controls = () => {
   const [listening, setListening] = useState(false);
@@ -30,6 +31,7 @@ const Controls = () => {
 
   const handleStopListening = () => {
     setListening(false);
+    setVisible(true);
     SpeechRecognition.stopListening();
   };
 
@@ -50,7 +52,11 @@ const Controls = () => {
             <div className="pulse">
               <div className="outline" />
               <div className="outline" id="delayed" />
-              <button onClick={handleStartListening} className="button">
+              <button
+                onClick={handleStartListening}
+                className="button"
+                disabled={listening}
+              >
                 <FaMicrophone size="25" />
               </button>
             </div>
@@ -59,12 +65,27 @@ const Controls = () => {
               <FaMicrophone size="25" />
             </button>
           )}
-          <button className="button stop" onClick={handleStopListening}>
+          <button
+            className="button stop"
+            onClick={handleStopListening}
+            disabled={!listening}
+            style={{ cursor: !listening ? "not-allowed" : "pointer" }}
+          >
             <FaStopCircle size="25" />
           </button>
-          <button className="button reset" onClick={handleReset}>
+          <button
+            className="button reset"
+            onClick={handleReset}
+            disabled={listening}
+            style={{ cursor: listening ? "not-allowed" : "pointer" }}
+          >
             <BiReset size="25" />
           </button>
+          <Result
+            transcript={transcript}
+            visible={visible}
+            onCancel={() => setVisible(false)}
+          />
         </div>
         <div>
           <ReactMic
@@ -107,11 +128,6 @@ const Controls = () => {
         <div>
           <WordCounts transcript={transcript} />
         </div>
-        <Result
-          transcript={transcript}
-          visible={visible}
-          onCancel={() => setVisible(false)}
-        />
       </Space>
     </>
   );

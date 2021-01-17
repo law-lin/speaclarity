@@ -12,7 +12,10 @@ const fillerWords = [
   "like",
   "so",
   "right",
-  "yeah"
+  "yeah",
+  "alright",
+  "kinda",
+  "well"
 ];
 
 export default fillerWords;
