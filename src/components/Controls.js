@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import fillerWords from "constants/fillerWords";
 // Recording
 import SpeechRecognition, {
   useSpeechRecognition
@@ -18,6 +19,7 @@ const Controls = () => {
   const [listening, setListening] = useState(false);
   const [recordedBlob, setRecordedBlob] = useState(null);
   const [visible, setVisible] = useState(false);
+  const [recordedTranscript, setRecordedTranscript] = useState("");
   const { transcript, resetTranscript } = useSpeechRecognition();
 
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
@@ -32,11 +34,44 @@ const Controls = () => {
   const handleStopListening = () => {
     setListening(false);
     setVisible(true);
+    setRecordedTranscript(transcript);
     SpeechRecognition.stopListening();
   };
 
-  const onStop = (recordedBlob) => {
+  const onStop = (recordedBlob, recordedTranscript) => {
     setRecordedBlob(recordedBlob);
+
+    console.log(recordedTranscript);
+    // Get occurrences of each filler word
+    let fillerCount = 0;
+    let uniqueFillerCount = 0;
+    let wordCounts = {};
+    recordedTranscript.split(" ").forEach((word) => {
+      wordCounts[word] = wordCounts[word] ? ++wordCounts[word] : 1;
+    });
+
+    for (let key of Object.keys(wordCounts)) {
+      if (fillerWords.includes(key)) {
+        fillerCount = fillerCount + wordCounts[key];
+        uniqueFillerCount++;
+      }
+    }
+    let newRecord = {
+      transcript: recordedTranscript,
+      audioUrl: recordedBlob.blobURL,
+      createdAt: Date.now(),
+      fillerCount,
+      uniqueFillerCount
+    };
+    console.log(fillerCount);
+    let records = JSON.parse(localStorage.getItem("records"));
+    console.log(records);
+    if (records === null || records === undefined) {
+      records = [newRecord];
+    } else {
+      records.push(newRecord);
+    }
+    localStorage.setItem("records", JSON.stringify(records));
   };
 
   const handleReset = () => {
@@ -92,7 +127,7 @@ const Controls = () => {
             record={listening}
             visualSetting="frequencyBars"
             className="visualizer"
-            onStop={onStop}
+            onStop={(recordedBlob) => onStop(recordedBlob, recordedTranscript)}
             strokeColor="#ff00c3"
             backgroundColor="#222032"
           />

@@ -5,10 +5,12 @@
 
 .head {
   font-family: sans-serif;
-  text-align: center;
   color: white;
   background-color: #3883cf;
   padding: 2vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .main {

@@ -1,19 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import "antd/dist/antd.css";
-
+import "./styles.css";
+import { Button, Layout, Menu, Breadcrumb } from "antd";
 import Controls from "components/Controls";
 
-import "./styles.css";
+const { Header, Content, Sider } = Layout;
 
 export default function App() {
+  const [showHistory, setShowHistory] = useState(false);
   return (
-    <div className="app">
-      <div className="head">
-        <h1 style={{ color: "white" }}>Speaclarity</h1>
-      </div>
-      <div className="main">
+    <Layout className="app">
+      <Header className="head">
+        <span style={{ color: "white", fontSize: "36px", fontWeight: 800 }}>
+          Speaclarity
+        </span>
+        <Button onClick={() => setShowHistory(true)}>View History</Button>
+      </Header>
+      <Content className="main">
         <Controls />
-      </div>
-    </div>
+      </Content>
+    </Layout>
   );
 }
