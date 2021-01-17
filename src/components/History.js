@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Drawer, Collapse, Button } from 'antd';
+import { CloseOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import fillerWords from 'constants/fillerWords';
 
@@ -31,6 +32,7 @@ const History = ({ showHistory, onClose }) => {
       visible={showHistory}
       headerStyle={{ backgroundColor: '#430780' }}
       drawerStyle={{ backgroundColor: '#b481c9' }}
+      closeIcon={<CloseOutlined style={{ color: '#ffffff' }} />}
     >
       <Collapse>
         {transcripts &&
