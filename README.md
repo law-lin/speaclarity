@@ -11,7 +11,7 @@ You can start recording by hitting the microphone button at the center top of th
 Once you finish recording, your transcript and audio file are saved in your browser. You can view any past transcripts by clicking "View History" in the top right corner.
 
 ## Technologies
-We built this using JavaScript, React, and Ant Design. For speech recognition, we utilized https://www.npmjs.com/package/react-speech-recognition that uses the Web Speech API. We used canvasJS to build an elegant pie chart.
+We built this using JavaScript, React, and Ant Design. For speech recognition, we utilized [react-speech-recognition](https://www.npmjs.com/package/react-speech-recognition) that uses the Web Speech API. We used canvasJS to build an elegant pie chart.
 
 
 ## Future Add-ons
