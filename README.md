@@ -4,6 +4,8 @@ Created at HackDavis 2021 by Lawrence Lin and Leo Pan.
 
 Try it out at https://speaclear.online!
 
+![Speaclear](./speaclear.png)
+
 Have you ever gave a presentation and you found yourself using filler words like "basically", "so", or "um" often? Speaclear (portmanteau of speak and clear!) helps you work towards using less filler words by recording your speech and identifying any filler words.
 
 You can start recording by hitting the microphone button at the center top of the screen. Make sure to have microphone permissions enabled. As you speak into the mic, a live transcript will be generated and appear in the center left of the screen. You will also see a live pie chart being created and word frequencies will appear below that as well. Hit stop to stop recording and to save your transcript/recording. You can playback the audio in the center of the screen to hear yourself. Your saved transcripts/recordings can be found by clicking the "View History" button located in the top right corner of the site.
