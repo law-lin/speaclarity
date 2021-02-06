@@ -2,7 +2,7 @@
 
 Created at HackDavis 2021 by Lawrence Lin and Leo Pan.
 
-Try it out at https://speaclear.online/!
+Try it out at https://speaclear.online!
 
 Have you ever gave a presentation and you found yourself using filler words like "basically", "so", or "um" often? Speaclear (portmanteau of speak and clear!) helps you work towards using less filler words by recording your speech and identifying any filler words.
 
